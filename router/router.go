@@ -7,5 +7,5 @@ func Initialize() {
 
 	InitializeRouters(router)
 
-	router.Run(":8080")
+	router.Run("https://api.open-meteo.com")
 }
