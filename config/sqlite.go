@@ -1,9 +1,6 @@
 package config
 
 import (
-	"os"
-
-	"github.com/WalmirSouza/Challenge/schemas"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
@@ -13,23 +10,23 @@ func InitializeSQLite() (*gorm.DB, error) {
 
 	dbPath := "./db/main.db"
 
-	_, err := os.Stat((dbPath))
+	// _, err := os.Stat((dbPath))
 
-	if os.IsNotExist(err) {
-		logger.Info("Criando banco de dados...")
+	// if os.IsNotExist(err) {
+	// 	logger.Info("Criando banco de dados...")
 
-		err = os.MkdirAll("./db", os.ModePerm)
-		if err != nil {
-			return nil, err
-		}
+	// 	err = os.MkdirAll("./db", os.ModePerm)
+	// 	if err != nil {
+	// 		return nil, err
+	// 	}
 
-		file, err := os.Create((dbPath))
+	// 	file, err := os.Create((dbPath))
 
-		if err != nil {
-			return nil, err
-		}
-		file.Close()
-	}
+	// 	if err != nil {
+	// 		return nil, err
+	// 	}
+	// 	file.Close()
+	// }
 
 	db, err := gorm.Open(sqlite.Open(dbPath), &gorm.Config{})
 	if err != nil {
@@ -37,12 +34,12 @@ func InitializeSQLite() (*gorm.DB, error) {
 		return nil, err
 	}
 
-	err = db.AutoMigrate((&schemas.WindForecast{}))
+	// err = db.AutoMigrate((&schemas.WindForecast{}))
 
-	if err != nil {
-		logger.Errorf("Erro no Automigrate Sqlite: %v", err)
-		return nil, err
-	}
+	// if err != nil {
+	// 	logger.Errorf("Erro no Automigrate Sqlite: %v", err)
+	// 	return nil, err
+	// }
 
 	return db, nil
 }
